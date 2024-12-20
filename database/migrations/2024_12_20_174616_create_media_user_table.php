@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('media_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('media_id')->constrained('media')->onDelete('cascade');
+            $table->foreignId('entertainment_id')->constrained('entertainment')->onDelete('cascade');
         });
     }
 
