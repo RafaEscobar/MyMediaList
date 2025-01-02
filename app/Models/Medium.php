@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Medium extends Model
 {
     protected $table = "entertainment";
+    protected $fillable = [
+        'title',
+        'score',
+        'comment',
+        'category_id',
+        'status_id',
+        'user_id',
+        'priority_id',
+    ];
 
     public function users()
     {

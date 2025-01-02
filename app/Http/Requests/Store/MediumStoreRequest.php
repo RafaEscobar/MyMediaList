@@ -11,7 +11,7 @@ class MediumStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class MediumStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:32|min:3',
+            'score' => 'double|nullable',
+            'comment' => 'text|nullable',
+            'category_id' => 'required|integer|exists:categories,id',
+            'status_id' => 'required|integer|exists:statuses,id',
+            'user_id' => 'required|integer|exists:suers,id',
+            'priority_id' => 'required|integer|exists:priorities,id',
         ];
     }
 }
