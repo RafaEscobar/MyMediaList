@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\MediumController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\SagaController;
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/status', StatusController::class)->only(['index']);
     Route::apiResource('/medias', MediumController::class);
     Route::apiResource('/sagas', SagaController::class);
+    Route::apiResource('/chapters', ChapterController::class);
 });
