@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Saga extends Model
 {
+    protected $fillable = [
+        'num_caps',
+        'season',
+        'final_comment',
+        'category_id',
+        'status_id',
+        'priority_id'
+    ];
+
     public function users()
     {
         return $this->morphMany('App\Modesl\User', 'mediable');
