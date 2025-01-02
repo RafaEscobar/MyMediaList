@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->double('score');
             $table->text('comment');
+            $table->foreignId('saga_id')->constrained('sagas')->onDelete('cascade');
             $table->timestamps();
         });
     }
