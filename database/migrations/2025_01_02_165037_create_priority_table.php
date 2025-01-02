@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chapters', function (Blueprint $table) {
+        Schema::create('priority', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('score');
-            $table->text('comment');
+            $table->string('priority');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('priority');
     }
 };
