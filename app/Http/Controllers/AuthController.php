@@ -18,11 +18,10 @@ class AuthController extends Controller
                 $token = $user->createToken('auth_token')->plainTextToken;
                 return new UserResource($user, $token);
             } else {
-                return response()->json(['message' => 'Credenciales incorrectas'], 401);
+                return response()->json(["message" => "Credenciales incorrectas"], 401);
             }
-
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()], 500);
+            return response()->json(["message" => $th->getMessage()], 500);
         }
     }
 
@@ -33,7 +32,7 @@ class AuthController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
             return new UserResource($user, $token);
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()], 500);
+            return response()->json(["message" => $th->getMessage()], 500);
         }
     }
 
@@ -41,7 +40,7 @@ class AuthController extends Controller
     {
         try {
             Auth::user()->tokens()->delete();
-            return response()->json(["message" => "Sesión terminada"], 200);
+            return response()->json(["message" => "Sesión cerrada"], 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
