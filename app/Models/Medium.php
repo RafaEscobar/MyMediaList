@@ -17,9 +17,9 @@ class Medium extends Model
         'priority_id',
     ];
 
-    public function users()
+    public function favorites()
     {
-        return $this->morphMany('App\Modesl\User', 'mediable');
+        return $this->morphMany('App\Modesl\Favorite', 'mediable');
     }
 
     public function status()
