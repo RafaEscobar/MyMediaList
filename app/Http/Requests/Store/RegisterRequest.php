@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => "required|max:32|min:3",
             'last_name' => "required|max:80|min:3",
-            'email' => "required|email|max:100",
+            'email' => "required|email|max:100|unique:users,email",
             'password' => "required|max:16|min:8",
             'date_birth' => "required|date",
         ];
@@ -42,6 +42,7 @@ class RegisterRequest extends FormRequest
             "email.required" => "El correo electrónico es obligatorio.",
             "email.email" => "El correo electrónico no tiene el formato correcto.",
             "email.max" => "El correo electrónico es demasiado largo.",
+            "email.unique" => "El correo electrónico ya ha sido registrado.",
             "password.required" => "La contraseña es obligatoria.",
             "password.max" => "La contraseña es demasiado grande",
             "password.min" => "La contraseña es muy corta.",

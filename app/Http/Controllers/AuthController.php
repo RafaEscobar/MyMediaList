@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Get\AuthRequest;
 use App\Http\Requests\Store\RegisterRequest;
+use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -16,8 +16,11 @@ class AuthController extends Controller
             if (Auth::attempt($request->all())) {
                 $user = User::findOrFail(Auth::user()->id);
                 $token = $user->createToken('auth_token')->plainTextToken;
+                return new UserResource($user, $token);
+            } else {
+                return response()->json(['message' => 'Credenciales incorrectas'], 401);
             }
-            
+
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
@@ -27,6 +30,8 @@ class AuthController extends Controller
     {
         try {
             $user = User::create($request->all());
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return new UserResource($user, $token);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
