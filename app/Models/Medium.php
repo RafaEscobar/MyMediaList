@@ -21,9 +21,9 @@ class Medium extends Model implements HasMedia
         'priority_id',
     ];
 
-    public function favorites()
+    public function favoriteBy()
     {
-        return $this->morphMany('App\Modesl\Favorite', 'mediable');
+        return $this->morphToMany(User::class, 'favorites');
     }
 
     public function status()

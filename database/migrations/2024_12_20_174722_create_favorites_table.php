@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->unsignedBigInteger('mediable_id');
-            $table->string('mediable_type');
+            $table->unsignedBigInteger('favoritable_id');
+            $table->string('favoritable_type');
         });
     }
 
