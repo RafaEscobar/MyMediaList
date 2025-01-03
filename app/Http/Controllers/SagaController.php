@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Store\SagaStoreRequest;
 use App\Http\Requests\Update\SagaUpdateRequest;
 use App\Http\Resources\Collections\SagaCollection;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SagaController extends Controller

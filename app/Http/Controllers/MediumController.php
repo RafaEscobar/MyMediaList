@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Store\MediumStoreRequest;
 use App\Http\Requests\Update\MediumUpdateRequest;
 use App\Http\Resources\Collections\MediumCollection;
-use App\Models\Medium;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MediumController extends Controller
@@ -14,7 +12,7 @@ class MediumController extends Controller
     public function index()
     {
         try {
-            $medias = Medium::where('user_id', Auth::user()->id)->get();
+            $medias = Auth::user()->entertainment;
             return new MediumCollection($medias);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);

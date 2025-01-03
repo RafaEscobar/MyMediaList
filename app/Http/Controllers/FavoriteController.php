@@ -16,12 +16,14 @@ class FavoriteController extends Controller
     {
         try {
             $user = User::findOrFail(Auth::user()->id);
-            if ($request['type'] = 'media') {
+            if ($request['type'] == 'media') {
                 $favorites = $user->favorites(Medium::class)->get();
                 return new MediumCollection($favorites);
-            } else if ($request['type'] = 'saga') {
+            } else if ($request['type'] == 'saga') {
                 $favorites = $user->favorites(Saga::class)->get();
                 return new SagaCollection($favorites);
+            } else {
+                return response()->json(["message" => "No has filtrado por tipo."]);
             }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
