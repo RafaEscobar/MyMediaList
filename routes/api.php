@@ -8,7 +8,6 @@ use App\Http\Controllers\MediumController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\SagaController;
 use App\Http\Controllers\StatusController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function(){
