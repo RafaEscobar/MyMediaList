@@ -49,8 +49,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function mediable()
+    public function favorites()
     {
-        return $this->morphTo();
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function sagas()
+    {
+        return $this->hasMany(Saga::class);
+    }
+
+    public function entertainment()
+    {
+        return $this->hasMany(Medium::class);
     }
 }

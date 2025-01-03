@@ -6,9 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Saga extends Model
 {
-    public function users()
+    protected $fillable = [
+        'num_caps',
+        'season',
+        'final_comment',
+        'category_id',
+        'status_id',
+        'priority_id'
+    ];
+
+    public function favorites()
     {
-        return $this->morphMany('App\Modesl\User', 'mediable');
+        return $this->morphMany('App\Modesl\Favorite', 'mediable');
     }
 
     public function chapters()
