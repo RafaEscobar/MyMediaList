@@ -35,8 +35,7 @@ class MediumController extends Controller
         try {
             $medium = Medium::create($request->all());
             $medium->addMediaFromRequest('image')->toMediaCollection('medias');
-            $urlImage = $medium->getMedia('medias')->first()->getUrl();
-            return new MediumResoruce($medium, $urlImage);
+            return new MediumResoruce($medium);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
