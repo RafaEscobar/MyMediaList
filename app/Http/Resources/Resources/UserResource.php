@@ -9,7 +9,7 @@ class UserResource extends JsonResource
 {
     protected $includeToken;
 
-    public function __construct($resource, $token = null) 
+    public function __construct($resource, $token = null)
     {
         parent:: __construct($resource);
         $this->includeToken = $token;
