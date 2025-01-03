@@ -10,11 +10,15 @@ use Illuminate\Http\Request;
 
 class ChapterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $chapters = Chapter::all();
-            return new ChapterCollection($chapters);
+            if (!empty($request['saga_id'])) {
+                $chapters = Chapter::where('saga_id', $request->saga_id)->get();
+                return new ChapterCollection($chapters);
+            } else {
+                return response()->json(["message" => "Falta el identificador de la serie."], 400);
+            }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
