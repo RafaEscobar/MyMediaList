@@ -2,40 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Store\FavStoreRequest;
 use App\Http\Resources\Collections\MediumCollection;
 use App\Http\Resources\Collections\SagaCollection;
-use App\Models\Medium;
-use App\Models\Saga;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public $types = ['saga', 'media'];
     public function index(Request $request)
     {
         try {
-            $user = User::findOrFail(Auth::user()->id);
-            if ($request['type'] == $this->types[1]) {
-                $favorites = $user->favorites(Medium::class)->get();
-                return new MediumCollection($favorites);
-            } else if ($request['type'] == $this->types[0]) {
-                $favorites = $user->favorites(Saga::class)->get();
-                return new SagaCollection($favorites);
-            } else {
-                return response()->json(["message" => "No has filtrado por tipo."]);
+            if (empty($request['type'])) return response()->json(["message" => "No has filtrado por tipo."]);
+            if ($request['type'] == 'media') {
+                return new MediumCollection(Auth::user()->favoriteMedia);
+            } else if ($request['type'] == 'saga') {
+                return new SagaCollection(Auth::user()->favoriteSaga);
             }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
     }
 
-    public function store(Request $request)
+    public function store(FavStoreRequest $request)
     {
         try {
-            if (empty($request->type) && !in_array($request->type, $this->types)) return response()->json(["message" => 'El tipo debe ser obligatorio y válido.'], 400);
-            ($request->type == $this->types[0]) ? Auth::user()->favoriteSaga()->attach($request->id) : Auth::user()->favoriteMedia()->attach($request->id);
+            ($request->type == 'saga') ? Auth::user()->favoriteSaga()->syncWithoutDetaching($request->id) : Auth::user()->favoriteMedia()->syncWithoutDetaching($request->id);
             return response()->json(["message" => 'Agregado a favoritos'], 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
