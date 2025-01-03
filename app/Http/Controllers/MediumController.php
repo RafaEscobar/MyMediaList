@@ -21,15 +21,6 @@ class MediumController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        try {
-
-        } catch (\Throwable $th) {
-            return response()->json(["message" => $th->getMessage()], 500);
-        }
-    }
-
     public function store(MediumStoreRequest $request)
     {
         try {
@@ -42,6 +33,15 @@ class MediumController extends Controller
     }
 
     public function update(MediumUpdateRequest $request, $id)
+    {
+        try {
+
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 500);
+        }
+    }
+
+    public function show($id)
     {
         try {
 

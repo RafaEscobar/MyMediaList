@@ -20,7 +20,8 @@ class SagaResource extends JsonResource
             'final_comment' => $this->final_comment,
             'category_id' => $this->category_id,
             'status_id' => $this->status_id,
-            'priority_id' => $this->priority_id
+            'priority_id' => $this->priority_id,
+            'imageUrl' => $this->getMedia('sagas')->first()->getUrl()
         ];
     }
 }

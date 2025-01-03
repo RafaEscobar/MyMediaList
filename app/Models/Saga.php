@@ -3,16 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Saga extends Model
+class Saga extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
+        'title',
         'num_caps',
         'season',
         'final_comment',
         'category_id',
         'status_id',
-        'priority_id'
+        'priority_id',
+        'user_id'
     ];
 
     public function favorites()
