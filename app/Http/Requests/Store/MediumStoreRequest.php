@@ -22,13 +22,43 @@ class MediumStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:32|min:3',
-            'score' => 'double|nullable',
+            'title' => 'required|string|max:64|min:3',
+            'score' => 'numeric|nullable',
             'comment' => 'text|nullable',
             'category_id' => 'required|integer|exists:categories,id',
             'status_id' => 'required|integer|exists:statuses,id',
-            'user_id' => 'required|integer|exists:suers,id',
+            'user_id' => 'required|integer|exists:users,id',
             'priority_id' => 'required|integer|exists:priorities,id',
+            'image' => 'required|image'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'El título es obligatorio.',
+            'title.string' => 'El título debe ser una cadena de texto.',
+            'title.max' => 'El título no puede tener más de 64 caracteres.',
+            'title.min' => 'El título debe tener al menos 3 caracteres.',
+            'score.numeric' => 'El puntaje debe ser un número.',
+            'score.nullable' => 'El puntaje es opcional.',
+            'comment.text' => 'El comentario debe ser un texto.',
+            'comment.nullable' => 'El comentario es opcional.',
+            'category_id.required' => 'La categoría es obligatoria.',
+            'category_id.integer' => 'La categoría debe ser un número entero.',
+            'category_id.exists' => 'La categoría seleccionada no existe.',
+            'status_id.required' => 'El estado es obligatorio.',
+            'status_id.integer' => 'El estado debe ser un número entero.',
+            'status_id.exists' => 'El estado seleccionado no existe.',
+            'user_id.required' => 'El usuario es obligatorio.',
+            'user_id.integer' => 'El usuario debe ser un número entero.',
+            'user_id.exists' => 'El usuario seleccionado no existe.',
+            'priority_id.required' => 'La prioridad es obligatoria.',
+            'priority_id.integer' => 'La prioridad debe ser un número entero.',
+            'priority_id.exists' => 'La prioridad seleccionada no existe.',
+            'image.required' => 'La imagen es obligatoria.',
+            'image.image' => 'El archivo debe ser una imagen.'
+        ];
+}
+
 }

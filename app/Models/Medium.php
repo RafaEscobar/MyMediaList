@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Medium extends Model
+class Medium extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = "entertainment";
     protected $fillable = [
         'title',
@@ -17,9 +21,9 @@ class Medium extends Model
         'priority_id',
     ];
 
-    public function favorites()
+    public function favoriteBy()
     {
-        return $this->morphMany('App\Modesl\Favorite', 'mediable');
+        return $this->morphToMany(User::class, 'favorites');
     }
 
     public function status()

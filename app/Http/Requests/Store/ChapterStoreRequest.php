@@ -22,10 +22,28 @@ class ChapterStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:42|min:3",
-            "score" => "required|double",
-            "comment" => "text|nullable",
+            "name" => "required|string|max:64|min:3",
+            "score" => "required|numeric",
+            "comment" => "string|nullable",
             "saga_id" => "required|integer|exists:sagas,id"
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.max' => 'El nombre no puede tener más de 64 caracteres.',
+            'name.min' => 'El nombre debe tener al menos 3 caracteres.',
+            'score.required' => 'El puntaje es obligatorio.',
+            'score.numeric' => 'El puntaje tiene un formato incorrecto.',
+            'comment.string' => 'El comentario debe ser de tipo texto.',
+            'comment.nullable' => 'El comentario es opcional.',
+            'saga_id.required' => 'La saga es obligatoria.',
+            'saga_id.integer' => 'La saga debe ser un valor entero.',
+            'saga_id.exists' => 'La saga seleccionada no existe.',
+        ];
+}
+
 }

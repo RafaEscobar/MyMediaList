@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sagas', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->integer('num_caps');
             $table->integer('season');
             $table->text('final_comment');

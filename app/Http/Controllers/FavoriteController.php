@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Store\FavStoreRequest;
 use App\Http\Resources\Collections\MediumCollection;
 use App\Http\Resources\Collections\SagaCollection;
-use App\Models\Medium;
-use App\Models\Saga;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,16 +13,22 @@ class FavoriteController extends Controller
     public function index(Request $request)
     {
         try {
-            $user = User::findOrFail(Auth::user()->id);
+            if (empty($request['type'])) return response()->json(["message" => "No has filtrado por tipo."]);
             if ($request['type'] == 'media') {
-                $favorites = $user->favorites(Medium::class)->get();
-                return new MediumCollection($favorites);
+                return new MediumCollection(Auth::user()->favoriteMedia);
             } else if ($request['type'] == 'saga') {
-                $favorites = $user->favorites(Saga::class)->get();
-                return new SagaCollection($favorites);
-            } else {
-                return response()->json(["message" => "No has filtrado por tipo."]);
+                return new SagaCollection(Auth::user()->favoriteSaga);
             }
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 500);
+        }
+    }
+
+    public function store(FavStoreRequest $request)
+    {
+        try {
+            ($request->type == 'saga') ? Auth::user()->favoriteSaga()->syncWithoutDetaching($request->id) : Auth::user()->favoriteMedia()->syncWithoutDetaching($request->id);
+            return response()->json(["message" => 'Agregado a favoritos'], 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
