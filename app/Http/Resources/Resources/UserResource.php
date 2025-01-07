@@ -25,8 +25,6 @@ class UserResource extends JsonResource
             "name" => $this->name,
             "last_name" => $this->last_name,
             "email" => $this->email,
-            "date_birth" => $this->date_birth,
-            "token"
         ];
         if ($this->includeToken) $data['token'] = $this->includeToken;
         return $data;
