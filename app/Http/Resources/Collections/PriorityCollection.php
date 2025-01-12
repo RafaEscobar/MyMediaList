@@ -17,9 +17,6 @@ class PriorityCollection extends ResourceCollection
     {
         return [
             "data" => PriorityResource::collection($this->collection),
-            "meta" => [
-                "total" => $this->collection->count()
-            ]
         ];
     }
 }

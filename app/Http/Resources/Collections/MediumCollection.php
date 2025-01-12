@@ -17,9 +17,6 @@ class MediumCollection extends ResourceCollection
     {
         return [
             "data" => MediumResoruce::collection($this->collection),
-            "meta" => [
-                "total" => $this->collection->count()
-            ]
         ];
     }
 }

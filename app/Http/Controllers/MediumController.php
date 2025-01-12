@@ -8,13 +8,14 @@ use App\Http\Resources\Collections\MediumCollection;
 use App\Http\Resources\Resources\MediumResoruce;
 use App\Models\Medium;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class MediumController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $medias = Auth::user()->entertainment;
+            $medias = Auth::user()->entertainment()->paginate($request->limit);
             return new MediumCollection($medias);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);

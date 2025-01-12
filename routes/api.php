@@ -17,9 +17,9 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::apiResource('/priority', PriorityController::class)->only(['index']);
-    Route::apiResource('/category', CategoryController::class)->only(['index']);
-    Route::apiResource('/status', StatusController::class)->only(['index']);
+    Route::apiResource('/priorities', PriorityController::class)->only(['index']);
+    Route::apiResource('/categories', CategoryController::class)->only(['index']);
+    Route::apiResource('/statuses', StatusController::class)->only(['index']);
     Route::apiResource('/medias', MediumController::class);
     Route::apiResource('/sagas', SagaController::class);
     Route::apiResource('/chapters', ChapterController::class);
