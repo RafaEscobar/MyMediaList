@@ -16,7 +16,9 @@ class MediumController extends Controller
     {
         try {
             $medias = Auth::user()->entertainment()
-            ->paginate($request->limit);
+            ->when($request->has('category_id'), function($q) use ($request){
+                $q->where('category_id', $request->category_id);
+            })->paginate($request->limit);
             return new MediumCollection($medias);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
