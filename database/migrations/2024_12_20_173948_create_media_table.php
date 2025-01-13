@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('entertainment', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->double('score')->default(0);
+            $table->double('score')->nullable();
             $table->text('comment')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');

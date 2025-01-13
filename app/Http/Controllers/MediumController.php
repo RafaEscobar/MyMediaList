@@ -15,7 +15,8 @@ class MediumController extends Controller
     public function index(Request $request)
     {
         try {
-            $medias = Auth::user()->entertainment()->paginate($request->limit);
+            $medias = Auth::user()->entertainment()
+            ->paginate($request->limit);
             return new MediumCollection($medias);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
