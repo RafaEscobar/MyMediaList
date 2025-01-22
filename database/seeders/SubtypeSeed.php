@@ -15,5 +15,6 @@ class SubtypeSeed extends Seeder
     {
         Subtype::create(['subtype' => 'Media']);
         Subtype::create(['subtype' => 'Saga']);
+        Subtype::create(['subtype' => 'Chapter']);
     }
 }
