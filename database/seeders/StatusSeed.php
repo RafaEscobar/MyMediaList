@@ -17,5 +17,6 @@ class StatusSeed extends Seeder
         Status::create(['status' => 'Visto']);
         Status::create(['status' => 'Declinado']);
         Status::create(['status' => 'No terminado']);
+        Status::create(['status' => 'En emisión']);
     }
 }
