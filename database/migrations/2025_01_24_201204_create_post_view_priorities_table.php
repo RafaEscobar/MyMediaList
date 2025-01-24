@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('priorities', function (Blueprint $table) {
+        Schema::create('post_view_priorities', function (Blueprint $table) {
             $table->id();
             $table->string('priority');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('priority');
+        Schema::dropIfExists('post_view_priorities');
     }
 };
