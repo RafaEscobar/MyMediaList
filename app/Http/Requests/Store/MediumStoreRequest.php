@@ -28,7 +28,8 @@ class MediumStoreRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id',
             'status_id' => 'required|integer|exists:statuses,id',
             'user_id' => 'required|integer|exists:users,id',
-            'priority_id' => 'required|integer|exists:priorities,id',
+            'pending_priority_id' => 'integer|exists:pending_priorities,id',
+            'post_view_priority_id' => 'integer|exists:post_view_priorities,id',
             'image' => 'required|image'
         ];
     }
@@ -53,9 +54,10 @@ class MediumStoreRequest extends FormRequest
             'user_id.required' => 'El usuario es obligatorio.',
             'user_id.integer' => 'El usuario debe ser un número entero.',
             'user_id.exists' => 'El usuario seleccionado no existe.',
-            'priority_id.required' => 'La prioridad es obligatoria.',
-            'priority_id.integer' => 'La prioridad debe ser un número entero.',
-            'priority_id.exists' => 'La prioridad seleccionada no existe.',
+            'pending_priority_id.integer' => 'La prioridad debe ser un número entero.',
+            'pending_priority_id.exists' => 'La prioridad seleccionada no existe.',
+            'post_view_priority_id.integer' => 'La prioridad debe ser un número entero.',
+            'post_view_priority_id.exists' => 'La prioridad seleccionada no existe.',
             'image.required' => 'La imagen es obligatoria.',
             'image.image' => 'El archivo debe ser una imagen.'
         ];

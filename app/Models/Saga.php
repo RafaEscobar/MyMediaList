@@ -17,7 +17,8 @@ class Saga extends Model implements HasMedia
         'final_comment',
         'category_id',
         'status_id',
-        'priority_id',
+        'post_view_priority_id',
+        'pending_priority_id',
         'user_id'
     ];
 

@@ -18,7 +18,8 @@ class Medium extends Model implements HasMedia
         'category_id',
         'status_id',
         'user_id',
-        'priority_id',
+        'post_view_priority_id',
+        'pending_priority_id'
     ];
 
     public function favoriteBy()

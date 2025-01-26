@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::table('entertainment', function (Blueprint $table) {
             $table->foreignId('pending_priority_id')->after('user_id')
-                ->constrained('pending_priorities')->onDelete('cascade');
+                ->nullable()
+                ->constrained('pending_priorities')
+                ->onDelete('cascade');
             $table->foreignId('post_view_priority_id')->after('pending_priority_id')
-                ->constrained('post_view_priorities')->onDelete('cascade');
+                ->nullable()
+                ->constrained('post_view_priorities')
+                ->onDelete('cascade');
         });
     }
 
