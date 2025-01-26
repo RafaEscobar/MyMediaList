@@ -13,7 +13,7 @@ class PostViewPrioritySeed extends Seeder
      */
     public function run(): void
     {
-        PostViewPriority::create(['priority' => 'Volver a verlo en unos meses']);
+        PostViewPriority::create(['priority' => 'Verlo de nuevo en unos meses']);
         PostViewPriority::create(['priority' => 'Verlo el próximo año']);
         PostViewPriority::create(['priority' => 'No lo se']);
         PostViewPriority::create(['priority' => 'No volver a verlo']);
