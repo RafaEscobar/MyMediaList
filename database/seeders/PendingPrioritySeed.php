@@ -13,10 +13,25 @@ class PendingPrioritySeed extends Seeder
      */
     public function run(): void
     {
-        PendingPriority::create(['priority' => 'Ver inmediatamente']);
-        PendingPriority::create(['priority' => 'Ver en los próximos días']);
-        PendingPriority::create(['priority' => 'El próximo mes']);
-        PendingPriority::create(['priority' => 'En unos meses']);
-        PendingPriority::create(['priority' => 'Algún día']);
+        PendingPriority::create([
+            'priority' => 'Inmediatamente',
+            'description' => 'Lo quiero, necesito, requiero, anhelo ahora mismo!!!!!'
+        ]);
+        PendingPriority::create([
+            'priority' => 'En los próximos días',
+            'description' => 'Creo poder resistir las ganas unos cuantos días.'
+        ]);
+        PendingPriority::create([
+            'priority' => 'El próximo mes',
+            'description' => 'Supongo que esperar más no está mal.'
+        ]);
+        PendingPriority::create([
+            'priority' => 'En unos meses',
+            'description' => 'Creo que en este caso me lo tomaré con calma.'
+        ]);
+        PendingPriority::create([
+            'priority' => 'Algún día',
+            'description' => 'Quién sabe, quizás alguna vez se dé la oportunidad, hehehe.'
+        ]);
     }
 }

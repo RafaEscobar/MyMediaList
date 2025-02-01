@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pending_priorities', function (Blueprint $table) {
             $table->id();
             $table->string('priority');
+            $table->string('description');
             $table->timestamps();
         });
     }

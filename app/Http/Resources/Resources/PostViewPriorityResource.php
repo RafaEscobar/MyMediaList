@@ -16,7 +16,8 @@ class PostViewPriorityResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "priority" => $this->priority
+            "priority" => $this->priority,
+            "description" => $this->description
         ];
     }
 }
