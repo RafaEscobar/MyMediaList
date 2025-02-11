@@ -6,8 +6,8 @@ use App\Http\Requests\Store\SagaStoreRequest;
 use App\Http\Requests\Update\SagaUpdateRequest;
 use App\Http\Resources\Collections\SagaCollection;
 use App\Http\Resources\Resources\SagaResource;
-use App\Models\Saga;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Saga;
 
 class SagaController extends Controller
 {
@@ -39,7 +39,12 @@ class SagaController extends Controller
 
     public function show($id)
     {
+        try {
+            $saga = Saga::findOrFail($id);
 
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function destroy($id)

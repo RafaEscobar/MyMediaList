@@ -19,7 +19,8 @@ class Saga extends Model implements HasMedia
         'status_id',
         'post_view_priority_id',
         'pending_priority_id',
-        'user_id'
+        'user_id',
+        'score'
     ];
 
     public function favoriteBy()
