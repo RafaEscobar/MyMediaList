@@ -23,7 +23,7 @@ class MediumStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:64|min:3',
-            'score' => 'numeric|nullable',
+            'score' => 'nullable',
             'comment' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',
             'status_id' => 'required|integer|exists:statuses,id',
@@ -41,7 +41,6 @@ class MediumStoreRequest extends FormRequest
             'title.string' => 'El título debe ser una cadena de texto.',
             'title.max' => 'El título no puede tener más de 64 caracteres.',
             'title.min' => 'El título debe tener al menos 3 caracteres.',
-            'score.numeric' => 'El puntaje debe ser un número.',
             'score.nullable' => 'El puntaje es opcional.',
             'comment.nullable' => 'El comentario es opcional.',
             'category_id.required' => 'La categoría es obligatoria.',
