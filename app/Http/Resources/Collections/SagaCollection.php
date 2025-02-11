@@ -17,9 +17,6 @@ class SagaCollection extends ResourceCollection
     {
         return [
             "data" => SagaResource::collection($this->collection),
-            "meta" => [
-                "total" => $this->collection->count()
-            ]
         ];
     }
 }

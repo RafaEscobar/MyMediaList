@@ -8,13 +8,17 @@ use App\Http\Resources\Collections\SagaCollection;
 use App\Http\Resources\Resources\SagaResource;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Saga;
+use Illuminate\Http\Request;
 
 class SagaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $sagas = Auth::user()->sagas;
+            $sagas = Auth::user()->sagas()
+            ->when($request->has('category_id'), function($q) use ($request) {
+                $q->where('category_id', $request->category_id);
+            })->paginate($request->limit);
             return new SagaCollection($sagas);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
