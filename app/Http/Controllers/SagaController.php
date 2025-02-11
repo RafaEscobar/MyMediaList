@@ -41,6 +41,7 @@ class SagaController extends Controller
     {
         try {
             $saga = Saga::findOrFail($id);
+            $raking = Saga::all()->orderBy('score');
 
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);

@@ -29,8 +29,8 @@ class SagaStoreRequest extends FormRequest
             'score' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',
             'status_id' => 'required|integer|exists:statuses,id',
-            'pending_priority_id' => 'integer|exists:pending_priorities,id',
-            'post_view_priority_id' => 'integer|exists:post_view_priorities,id',
+            'pending_priority_id' => 'nullable|integer|exists:pending_priorities,id',
+            'post_view_priority_id' => 'nullable|integer|exists:post_view_priorities,id',
             'user_id' => 'required|integer|exists:users,id',
             'image' => 'required|image'
         ];

@@ -22,7 +22,8 @@ class MediumResoruce extends JsonResource
             "category_id" => $this->category_id,
             "status_id" => $this->status_id,
             "user_id" => $this->user_id,
-            "priority_id" => $this->priority_id,
+            "pending_priority_id" => $this->pending_priority_id,
+            "post_view_priority_id" => $this->post_view_priority_id,
             "imageUrl" => $this->getMedia('medias')->first()->getUrl()
         ];
     }
