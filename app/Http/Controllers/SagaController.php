@@ -44,9 +44,14 @@ class SagaController extends Controller
     public function show($id)
     {
         try {
-            $saga = Saga::findOrFail($id);
-            $raking = Saga::all()->orderBy('score');
-
+            $saga = Saga::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            if ($saga) {
+                $raking = Auth::user()->sagas()->orderByDesc('score')->limit(10)->pluck('id');
+                $position = $raking->search($id);
+                return new SagaResource($saga, $position ? $position+1 : null);
+            } else {
+                return response()->json(["message" => "Recurso no encontrado"], 404);
+            }
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
