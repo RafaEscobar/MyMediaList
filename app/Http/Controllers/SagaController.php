@@ -30,7 +30,7 @@ class SagaController extends Controller
         try {
             $saga = Saga::create($request->all());
             $saga->addMediaFromRequest('image')->toMediaCollection('sagas');
-            return new SagaResource($saga);
+            $this->getDataSaga($saga);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
@@ -46,9 +46,7 @@ class SagaController extends Controller
         try {
             $saga = Saga::where('id', $id)->where('user_id', Auth::user()->id)->first();
             if ($saga) {
-                $raking = Auth::user()->sagas()->orderByDesc('score')->limit(10)->pluck('id');
-                $position = $raking->search($id);
-                return new SagaResource($saga, $position ? $position+1 : null);
+                return $this->getDataSaga($saga);
             } else {
                 return response()->json(["message" => "Recurso no encontrado"], 404);
             }
@@ -60,5 +58,12 @@ class SagaController extends Controller
     public function destroy($id)
     {
 
+    }
+
+    private function getDataSaga(Saga $saga)
+    {
+        $raking = Auth::user()->sagas()->orderByDesc('score')->limit(10)->pluck('id');
+        $position = $raking->search($saga->id);
+        return new SagaResource($saga, $position ? $position+1 : null);
     }
 }
