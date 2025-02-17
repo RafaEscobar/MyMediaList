@@ -14,23 +14,23 @@ class CategorySeed extends Seeder
     public function run(): void
     {
         $movie = Category::create([
-            'category' => 'Películas',
+            'category' => 'Película',
             'subtype_id' => 1
         ]);
         $serie = Category::create([
-            'category' => 'Series',
+            'category' => 'Serie',
             'subtype_id' => 2
         ]);
         $manga = Category::create([
-            'category' => 'Mangas',
+            'category' => 'Manga',
             'subtype_id' => 2
         ]);
         $game = Category::create([
-            'category' => 'Videojuegos',
+            'category' => 'Videojuego',
             'subtype_id' => 1
         ]);
         $anime = Category::create([
-            'category' => 'Animes',
+            'category' => 'Anime',
             'subtype_id' => 2
         ]);
 
