@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('num_caps')->nullable();
             $table->integer('season')->nullable();
-            $table->text('final_comment');
+            $table->text('final_comment')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

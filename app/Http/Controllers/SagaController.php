@@ -30,7 +30,7 @@ class SagaController extends Controller
         try {
             $saga = Saga::create($request->all());
             $saga->addMediaFromRequest('image')->toMediaCollection('sagas');
-            $this->getDataSaga($saga);
+            return $this->getDataSaga($saga);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
@@ -60,7 +60,7 @@ class SagaController extends Controller
 
     }
 
-    private function getDataSaga(Saga $saga)
+    private function getDataSaga(Saga $saga):SagaResource
     {
         $raking = Auth::user()->sagas()->orderByDesc('score')->limit(10)->pluck('id');
         $position = $raking->search($saga->id);
