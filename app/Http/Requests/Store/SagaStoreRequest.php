@@ -23,8 +23,8 @@ class SagaStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:64|min:3',
-            'num_caps' => 'required|integer',
-            'season' => 'required|integer',
+            'num_caps' => 'nullable|integer',
+            'season' => 'nullable|integer',
             'final_comment' => 'string|nullable',
             'score' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('sagas', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('num_caps');
-            $table->integer('season');
+            $table->integer('num_caps')->nullable();
+            $table->integer('season')->nullable();
             $table->text('final_comment');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');
