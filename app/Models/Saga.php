@@ -10,6 +10,11 @@ class Saga extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $cats = [
+        'num_caps' => 'integer',
+        'season' => 'integer'
+    ];
+
     protected $fillable = [
         'title',
         'num_caps',

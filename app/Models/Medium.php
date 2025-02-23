@@ -11,6 +11,9 @@ class Medium extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $table = "entertainment";
+    protected $casts = [
+        "score" => "double"
+    ];
 
     protected $fillable = [
         'title',

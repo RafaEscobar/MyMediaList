@@ -24,10 +24,9 @@ class SagaResource extends JsonResource
         $data = [
             'id' => $this->id,
             'title' => $this->title,
-            'num_caps' => $this->num_caps,
-            'season' => $this->season,
+            'num_caps' => (int)$this->num_caps,
+            'season' => (int)$this->season,
             'final_comment' => $this->final_comment,
-            'score' => $this->score,
             'category_id' => $this->category_id,
             'status_id' => $this->status_id,
             "pending_priority_id" => $this->pending_priority_id,
