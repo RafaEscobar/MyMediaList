@@ -32,7 +32,7 @@ class SagaResource extends JsonResource
             "pending_priority_id" => $this->pending_priority_id,
             "post_view_priority_id" => $this->post_view_priority_id,
             'imageUrl' => $this->getMedia('sagas')->first()->getUrl(),
-            'creation_date' => $this->created_at->format('d/m/y')
+            'creation_date' => $this->created_at
         ];
         if ($this->position) $data['position'] = $this->position;
         return $data;
