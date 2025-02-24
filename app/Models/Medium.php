@@ -45,4 +45,14 @@ class Medium extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
+    public function PendingPriority()
+    {
+        return $this->belongsTo(PendingPriority::class);
+    }
+
+    public function postViewPriority()
+    {
+        return $this->belongsTo(PostViewPriority::class);
+    }
 }
