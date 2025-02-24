@@ -47,4 +47,14 @@ class Saga extends Model implements HasMedia
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function pendingPriority()
+    {
+        return $this->belongsTo(PendingPriority::class);
+    }
+
+    public function postViewPriority()
+    {
+        return $this->belongsTo(PostViewPriority::class);
+    }
 }

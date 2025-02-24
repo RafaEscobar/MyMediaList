@@ -11,9 +11,14 @@ class PendingPriority extends Model
         "priority",
         "description"
     ];
-    
+
     public function medium()
     {
         return $this->hasMany(Medium::class);
+    }
+
+    public function saga()
+    {
+        return $this->hasMany(Saga::class);
     }
 }

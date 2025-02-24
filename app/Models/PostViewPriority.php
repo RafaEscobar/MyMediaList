@@ -16,4 +16,9 @@ class PostViewPriority extends Model
     {
         return $this->hasMany(Medium::class);
     }
+
+    public function saga()
+    {
+        return $this->hasMany(Saga::class);
+    }
 }

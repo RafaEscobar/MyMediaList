@@ -27,10 +27,10 @@ class SagaResource extends JsonResource
             'num_caps' => (int)$this->num_caps,
             'season' => (int)$this->season,
             'final_comment' => $this->final_comment,
-            'category_id' => $this->category_id,
-            'status_id' => $this->status_id,
-            "pending_priority_id" => $this->pending_priority_id,
-            "post_view_priority_id" => $this->post_view_priority_id,
+            'category' => $this->category->category,
+            'status' => $this->status->status,
+            "pending_priority" => $this->pendingPriority->priority ?? null,
+            "post_view_priority" => $this->postViewPriority->priority ?? null,
             'imageUrl' => $this->getMedia('sagas')->first()->getUrl(),
             'creation_date' => $this->created_at
         ];
