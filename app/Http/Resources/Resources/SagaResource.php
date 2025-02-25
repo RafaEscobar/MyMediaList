@@ -7,6 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class SagaResource extends JsonResource
 {
+    protected $position;
+
+    public function __construct($resorce, $position = null)
+    {
+        parent:: __construct($resorce);
+        $this->position = $position;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -14,14 +21,23 @@ class SagaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'num_caps' => $this->num_caps,
-            'season' => $this->season,
+        $data = [
+            'id' => $this->id,
+            'title' => $this->title,
+            'num_caps' => (int)$this->num_caps,
+            'season' => (int)$this->season,
             'final_comment' => $this->final_comment,
-            'category_id' => $this->category_id,
-            'status_id' => $this->status_id,
-            'priority_id' => $this->priority_id,
-            'imageUrl' => $this->getMedia('sagas')->first()->getUrl()
+            'classification' => [
+                'category' => $this->category->category,
+                'type' => $this->category->subtype->subtype
+            ],
+            'status' => $this->status->status,
+            "pending_priority" => $this->pendingPriority->priority ?? null,
+            "post_view_priority" => $this->postViewPriority->priority ?? null,
+            'imageUrl' => $this->getMedia('sagas')->first()->getUrl(),
+            'creation_date' => $this->created_at
         ];
+        if ($this->position) $data['position'] = $this->position;
+        return $data;
     }
 }

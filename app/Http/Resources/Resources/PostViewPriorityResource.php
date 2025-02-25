@@ -5,7 +5,7 @@ namespace App\Http\Resources\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class PostViewPriorityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,8 @@ class CategoryResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "category" => $this->category,
-            "image" => $this->getMedia('categories')->first()->getUrl(),
-            "subtype" => $this->subtype->subtype
+            "priority" => $this->priority,
+            "description" => $this->description
         ];
     }
 }

@@ -5,7 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MediumController;
-use App\Http\Controllers\PriorityController;
+use App\Http\Controllers\PendingPriorityController;
+use App\Http\Controllers\PostViewPriorityController;
 use App\Http\Controllers\SagaController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,8 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::apiResource('/priorities', PriorityController::class)->only(['index']);
+    Route::apiResource('/pending-priorities', PendingPriorityController::class)->only(['index']);
+    Route::apiResource('/post-view-priorities', PostViewPriorityController::class)->only(['index']);
     Route::apiResource('/categories', CategoryController::class)->only(['index']);
     Route::apiResource('/statuses', StatusController::class)->only(['index']);
     Route::apiResource('/medias', MediumController::class);

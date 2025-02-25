@@ -19,11 +19,16 @@ class MediumResoruce extends JsonResource
             "title" => $this->title,
             "score" => $this->score,
             "comment" => $this->comment,
-            "category_id" => $this->category_id,
-            "status_id" => $this->status_id,
+            "classification" => [
+                "category" => $this->category->category,
+                "type" => $this->category->subtype->subtype
+            ],
+            "status" => $this->status->status,
             "user_id" => $this->user_id,
-            "priority_id" => $this->priority_id,
-            "imageUrl" => $this->getMedia('medias')->first()->getUrl()
+            "pending_priority" => $this->pendingPriority->priority ?? null,
+            "post_view_priority" => $this->postViewPriority->priority ?? null,
+            "imageUrl" => $this->getMedia('medias')->first()->getUrl(),
+            "creation_date" => $this->created_at
         ];
     }
 }

@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model
+class Category extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     public function medias()
     {
         return $this->hasMany(Medium::class);
@@ -14,5 +18,10 @@ class Category extends Model
     public function sagas()
     {
         return $this->hasMany(Saga::class);
+    }
+
+    public function subtype()
+    {
+        return $this->belongsTo(Subtype::class);
     }
 }

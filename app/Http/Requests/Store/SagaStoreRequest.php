@@ -23,12 +23,14 @@ class SagaStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:64|min:3',
-            'num_caps' => 'required|integer',
-            'season' => 'required|integer',
+            'num_caps' => 'nullable|integer',
+            'season' => 'nullable|integer',
             'final_comment' => 'string|nullable',
+            'score' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',
             'status_id' => 'required|integer|exists:statuses,id',
-            'priority_id' => 'required|integer|exists:priorities,id',
+            'pending_priority_id' => 'nullable|integer|exists:pending_priorities,id',
+            'post_view_priority_id' => 'nullable|integer|exists:post_view_priorities,id',
             'user_id' => 'required|integer|exists:users,id',
             'image' => 'required|image'
         ];
@@ -53,9 +55,10 @@ class SagaStoreRequest extends FormRequest
             'status_id.required' => 'El estado es obligatorio.',
             'status_id.integer' => 'El estado debe ser un valor entero.',
             'status_id.exists' => 'El estado seleccionado no existe.',
-            'priority_id.required' => 'La prioridad es obligatoria.',
-            'priority_id.integer' => 'La prioridad debe ser un valor entero.',
-            'priority_id.exists' => 'La prioridad seleccionada no existe.',
+            'pending_priority_id.integer' => 'La prioridad debe ser un valor entero.',
+            'pending_priority_id.exists' => 'La prioridad seleccionada no existe.',
+            'post_view_priority_id.integer' => 'La prioridad debe ser un valor entero.',
+            'post_view_priority_id.exists' => 'La prioridad seleccionada no existe.',
             'image.required' => 'La imagen es obligatoria.',
             'image.image' => 'El archivo debe ser una imagen.',
         ];

@@ -11,6 +11,10 @@ class Medium extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $table = "entertainment";
+    protected $casts = [
+        "score" => "double"
+    ];
+
     protected $fillable = [
         'title',
         'score',
@@ -18,7 +22,8 @@ class Medium extends Model implements HasMedia
         'category_id',
         'status_id',
         'user_id',
-        'priority_id',
+        'post_view_priority_id',
+        'pending_priority_id'
     ];
 
     public function favoriteBy()
@@ -39,5 +44,15 @@ class Medium extends Model implements HasMedia
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function PendingPriority()
+    {
+        return $this->belongsTo(PendingPriority::class);
+    }
+
+    public function postViewPriority()
+    {
+        return $this->belongsTo(PostViewPriority::class);
     }
 }

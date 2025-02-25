@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sagas', function (Blueprint $table) {
-            $table->foreignId('priority_id')->after('status_id')->constrained('priorities')->onDelete('cascade');
+            $table->double('score')->nullable()->after('final_comment');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sagas', function (Blueprint $table) {
-            //
+            $table->dropIfExists('score');
         });
     }
 };

@@ -10,6 +10,11 @@ class Saga extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $cats = [
+        'num_caps' => 'integer',
+        'season' => 'integer'
+    ];
+
     protected $fillable = [
         'title',
         'num_caps',
@@ -17,8 +22,10 @@ class Saga extends Model implements HasMedia
         'final_comment',
         'category_id',
         'status_id',
-        'priority_id',
-        'user_id'
+        'post_view_priority_id',
+        'pending_priority_id',
+        'user_id',
+        'score'
     ];
 
     public function favoriteBy()
@@ -39,5 +46,15 @@ class Saga extends Model implements HasMedia
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    public function pendingPriority()
+    {
+        return $this->belongsTo(PendingPriority::class);
+    }
+
+    public function postViewPriority()
+    {
+        return $this->belongsTo(PostViewPriority::class);
     }
 }

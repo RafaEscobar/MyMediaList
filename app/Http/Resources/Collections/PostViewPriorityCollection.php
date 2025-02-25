@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Collections;
 
-use App\Http\Resources\Resources\SagaResource;
+use App\Http\Resources\Resources\PostViewPriorityResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class SagaCollection extends ResourceCollection
+class PostViewPriorityCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -16,7 +16,10 @@ class SagaCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            "data" => SagaResource::collection($this->collection),
+            "data" => PostViewPriorityResource::collection($this->collection),
+            "meta" => [
+                "total" => $this->collection->count()
+            ]
         ];
     }
 }

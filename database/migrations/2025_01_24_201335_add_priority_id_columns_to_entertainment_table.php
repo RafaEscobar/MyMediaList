@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('entertainment', function (Blueprint $table) {
-            $table->foreignId('priority_id')->after('user_id')->constrained('priorities')->onDelete('cascade');
+            $table->foreignId('pending_priority_id')->after('user_id')
+                ->nullable()
+                ->constrained('pending_priorities')
+                ->onDelete('cascade');
+            $table->foreignId('post_view_priority_id')->after('pending_priority_id')
+                ->nullable()
+                ->constrained('post_view_priorities')
+                ->onDelete('cascade');
         });
     }
 
