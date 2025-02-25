@@ -27,7 +27,10 @@ class SagaResource extends JsonResource
             'num_caps' => (int)$this->num_caps,
             'season' => (int)$this->season,
             'final_comment' => $this->final_comment,
-            'category' => $this->category->category,
+            'classification' => [
+                'category' => $this->category->category,
+                'type' => $this->category->subtype->subtype
+            ],
             'status' => $this->status->status,
             "pending_priority" => $this->pendingPriority->priority ?? null,
             "post_view_priority" => $this->postViewPriority->priority ?? null,
