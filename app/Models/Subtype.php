@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subtype extends Model
 {
-    public function categories()
+    protected $fillable = [
+        "subtype",
+        "created_at"
+    ];
+
+    public function category()
     {
         return $this->hasMany(Category::class);
     }

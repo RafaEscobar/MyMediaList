@@ -41,6 +41,11 @@ class Medium extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function subtype()
+    {
+        return $this->belongsTo(Subtype::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
