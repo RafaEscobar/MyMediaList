@@ -29,7 +29,6 @@ class ChapterController extends Controller
     {
         try {
             $chapter = Chapter::create($request->all());
-            $chapter->addMediaFromRequest('image')->toMediaCollection('chapters');
             return new ChapterResource($chapter);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
