@@ -7,6 +7,7 @@ use App\Http\Requests\Update\ChapterUpdateRequest;
 use App\Http\Resources\Collections\ChapterCollection;
 use App\Http\Resources\Resources\ChapterResource;
 use App\Models\Chapter;
+use App\Models\Saga;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -31,6 +32,7 @@ class ChapterController extends Controller
     {
         try {
             $chapter = Chapter::create($request->all());
+            $this->updateSagaScore($request['saga_id']);
             return new ChapterResource($chapter);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
@@ -50,5 +52,13 @@ class ChapterController extends Controller
     public function destroy($id)
     {
 
+    }
+
+    private function updateSagaScore(int $sagaId): void
+    {
+        $saga = Saga::findOrFail($sagaId);
+        $saga->update([
+            'score' => round($saga->chapters->avg('score'), 1)
+        ]);
     }
 }
