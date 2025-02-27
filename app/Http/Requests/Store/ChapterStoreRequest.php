@@ -22,7 +22,7 @@ class ChapterStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:64|min:3",
+            "name" => "required|string|max:64",
             "score" => "required",
             "comment" => "string",
             "saga_id" => "required|integer|exists:sagas,id"
@@ -35,7 +35,6 @@ class ChapterStoreRequest extends FormRequest
             'name.required' => 'El nombre es obligatorio.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no puede tener más de 64 caracteres.',
-            'name.min' => 'El nombre debe tener al menos 3 caracteres.',
             'score.required' => 'El puntaje es obligatorio.',
             'comment.string' => 'El comentario debe ser de tipo texto.',
             'saga_id.required' => 'La saga es obligatoria.',
