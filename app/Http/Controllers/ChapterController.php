@@ -14,11 +14,13 @@ class ChapterController extends Controller
     public function index(Request $request)
     {
         try {
-            if (!empty($request['saga_id'])) {
-                $chapters = Chapter::where('saga_id', $request->saga_id)->get();
+            if (!empty($request['saga_id']) && !empty($request['ascOrder'])) {
+                $chapters = Chapter::where('saga_id', $request->saga_id)
+                    ->orderBy('created_at', filter_var($request->ascOrder, FILTER_VALIDATE_BOOL) ? 'asc' : 'desc')
+                    ->get();
                 return new ChapterCollection($chapters);
             } else {
-                return response()->json(["message" => "Falta el identificador de la serie."], 400);
+                return response()->json(["message" => "Verifica los datos que se envían con la solicitud"], 400);
             }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
