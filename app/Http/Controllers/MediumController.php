@@ -48,7 +48,12 @@ class MediumController extends Controller
     public function show($id)
     {
         try {
-
+            $media = Medium::where('id', $id)->where('user_id', Auth::user()->id)->first();
+            if ($media) {
+                return new MediumResoruce($media);
+            } else {
+                return response()->json(["message" => "Recurso no encontrado"], 404);
+            }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
