@@ -27,5 +27,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/sagas', SagaController::class);
     Route::apiResource('/chapters', ChapterController::class);
     Route::apiResource('/favorites', FavoriteController::class);
-    Route::apiResource('/ranking', RankingController::class)->only(['index']);
+    Route::apiResource('/ranking', RankingController::class)->only(['index', 'show']);
 });
