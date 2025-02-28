@@ -7,6 +7,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MediumController;
 use App\Http\Controllers\PendingPriorityController;
 use App\Http\Controllers\PostViewPriorityController;
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SagaController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/sagas', SagaController::class);
     Route::apiResource('/chapters', ChapterController::class);
     Route::apiResource('/favorites', FavoriteController::class);
+    Route::apiResource('/ranking', RankingController::class)->only(['index']);
 });
