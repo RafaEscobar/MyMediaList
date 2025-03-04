@@ -19,7 +19,6 @@ class ChapterResource extends JsonResource
             "score" => $this->score,
             "comment" => $this->comment,
             "saga_id" => $this->saga_id,
-            "imageUrl" => $this->getMedia('chapters')->first()->getUrl()
         ];
     }
 }

@@ -14,11 +14,15 @@ class CategoryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            "id" => $this->id,
-            "category" => $this->category,
-            "image" => $this->getMedia('categories')->first()->getUrl(),
-            "subtype" => $this->subtype->subtype
-        ];
+        try {
+            return [
+                "id" => $this->id,
+                "category" => $this->category,
+                "image" => $this->getMedia('categories')->first()->getUrl(),
+                "subtype" => $this->subtype->subtype
+            ];
+        } catch (\Throwable $th) {
+            throw "Category resource";
+        }
     }
 }

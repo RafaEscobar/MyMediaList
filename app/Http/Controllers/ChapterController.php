@@ -7,6 +7,7 @@ use App\Http\Requests\Update\ChapterUpdateRequest;
 use App\Http\Resources\Collections\ChapterCollection;
 use App\Http\Resources\Resources\ChapterResource;
 use App\Models\Chapter;
+use App\Models\Saga;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -14,11 +15,13 @@ class ChapterController extends Controller
     public function index(Request $request)
     {
         try {
-            if (!empty($request['saga_id'])) {
-                $chapters = Chapter::where('saga_id', $request->saga_id)->get();
+            if (!empty($request['saga_id']) && !empty($request['ascOrder'])) {
+                $chapters = Chapter::where('saga_id', $request->saga_id)
+                    ->orderBy('created_at', filter_var($request->ascOrder, FILTER_VALIDATE_BOOL) ? 'asc' : 'desc')
+                    ->get();
                 return new ChapterCollection($chapters);
             } else {
-                return response()->json(["message" => "Falta el identificador de la serie."], 400);
+                return response()->json(["message" => "Verifica los datos que se envían con la solicitud"], 400);
             }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
@@ -29,7 +32,7 @@ class ChapterController extends Controller
     {
         try {
             $chapter = Chapter::create($request->all());
-            $chapter->addMediaFromRequest('image')->toMediaCollection('chapters');
+            $this->updateSagaScore($request['saga_id']);
             return new ChapterResource($chapter);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
@@ -49,5 +52,13 @@ class ChapterController extends Controller
     public function destroy($id)
     {
 
+    }
+
+    private function updateSagaScore(int $sagaId): void
+    {
+        $saga = Saga::findOrFail($sagaId);
+        $saga->update([
+            'score' => round($saga->chapters->avg('score'), 1)
+        ]);
     }
 }
