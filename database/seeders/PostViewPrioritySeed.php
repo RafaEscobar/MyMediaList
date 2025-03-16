@@ -14,23 +14,23 @@ class PostViewPrioritySeed extends Seeder
     {
         PostViewPriority::create([
             'priority' => 'En unos días',
-            'description' => '¿Quién me juzgara? jajajaja'
+            'description' => '¿Quién me juzgará? jajajaja'
         ]);
         PostViewPriority::create([
             'priority' => 'En unos meses',
-            'description' => 'Estaría genial tomarnos un tiempo'
+            'description' => 'Tomémoslo con paciencia.'
         ]);
         PostViewPriority::create([
-            'priority' => 'Verlo el próximo año',
+            'priority' => 'El próximo año',
             'description' => 'El tiempo perfecto para poder volver a sentir lo mismo, casi como la primera vez...'
         ]);
         PostViewPriority::create([
-            'priority' => 'No lo se',
-            'description' => 'Dudo que esto suceda de nuevo, pero no lo descarto.'
+            'priority' => '¿Quizás?',
+            'description' => 'Dejemos que el tiempo lo decida.'
         ]);
         PostViewPriority::create([
             'priority' => 'Jamás',
-            'description' => 'No vale la pena perder mi tiempo en esto, ¡EEWWWW!'
+            'description' => 'No vale la pena perder mi tiempo en esto...'
         ]);
     }
 }
