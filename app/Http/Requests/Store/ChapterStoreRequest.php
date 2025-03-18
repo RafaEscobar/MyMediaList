@@ -24,7 +24,7 @@ class ChapterStoreRequest extends FormRequest
         return [
             "name" => "required|string|max:64",
             "score" => "required",
-            "comment" => "string",
+            "comment" => "string|nullable",
             "saga_id" => "required|integer|exists:sagas,id"
         ];
     }
