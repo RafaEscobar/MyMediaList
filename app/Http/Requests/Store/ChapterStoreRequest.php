@@ -24,7 +24,7 @@ class ChapterStoreRequest extends FormRequest
         return [
             "name" => "required|string|max:64",
             "score" => "required",
-            "comment" => "string|nullable",
+            "comment" => "nullable",
             "saga_id" => "required|integer|exists:sagas,id"
         ];
     }
@@ -36,7 +36,6 @@ class ChapterStoreRequest extends FormRequest
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no puede tener más de 64 caracteres.',
             'score.required' => 'El puntaje es obligatorio.',
-            'comment.string' => 'El comentario debe ser de tipo texto.',
             'saga_id.required' => 'La saga es obligatoria.',
             'saga_id.integer' => 'La saga debe ser un valor entero.',
             'saga_id.exists' => 'La saga seleccionada no existe.',
