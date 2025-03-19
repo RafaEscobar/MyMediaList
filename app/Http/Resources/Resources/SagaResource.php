@@ -35,7 +35,7 @@ class SagaResource extends JsonResource
                 'status' => $this->status->status,
                 "pending_priority" => $this->pendingPriority->priority ?? null,
                 "post_view_priority" => $this->postViewPriority->priority ?? null,
-                'imageUrl' => $this->getMedia('sagas')->first()->getUrl(),
+                'images' => $this->getMedia('sagas')->map(fn($image) => $image->getUrl()),
                 'creation_date' => $this->created_at,
                 'score' => $this->score
             ];

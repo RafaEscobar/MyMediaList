@@ -28,7 +28,7 @@ class MediumResoruce extends JsonResource
                 "user_id" => $this->user_id,
                 "pending_priority" => $this->pendingPriority->priority ?? null,
                 "post_view_priority" => $this->postViewPriority->priority ?? null,
-                "imageUrl" => $this->getMedia('medias')->map(fn($media) => $media->getUrl()),
+                "images" => $this->getMedia('medias')->map(fn($media) => $media->getUrl()),
                 "creation_date" => $this->created_at
             ];
         } catch (\Throwable $th) {
