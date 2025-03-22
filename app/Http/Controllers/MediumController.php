@@ -7,6 +7,7 @@ use App\Http\Requests\Store\MediumStoreRequest;
 use App\Http\Requests\Update\MediumUpdateRequest;
 use App\Http\Resources\Collections\MediumCollection;
 use App\Http\Resources\Resources\MediumResoruce;
+use App\Http\Resources\Resources\SagaResource;
 use App\Models\Medium;
 use App\Models\Saga;
 use App\Models\Subtype;
@@ -78,11 +79,12 @@ class MediumController extends Controller
             if ($type->subtype == 'Media') {
                 $entity = Medium::findOrFail($id);
                 $entity->addMediaFromRequest('image')->toMediaCollection('medias');
+                return new MediumResoruce($entity);
             } else if ($type->subtype == 'Saga') {
                 $entity = Saga::findOrFail($id);
                 $entity->addMediaFromRequest('image')->toMediaCollection('sagas');
+                return new SagaResource($entity);
             }
-            return response()->json(null, 200);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage(), 500]);
         }
