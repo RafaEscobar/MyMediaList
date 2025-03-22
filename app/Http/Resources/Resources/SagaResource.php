@@ -28,8 +28,12 @@ class SagaResource extends JsonResource
                 'num_caps' => (int)$this->num_caps,
                 'season' => (int)$this->season,
                 'final_comment' => $this->final_comment,
-                'classification' => [
-                    'category' => $this->category->category,
+                'category' => [
+                    'id' => $this->category->id,
+                    'category' => $this->category->category
+                ],
+                'type' => [
+                    'id' => $this->category->subtype->id,
                     'type' => $this->category->subtype->subtype
                 ],
                 'status' => $this->status->status,
