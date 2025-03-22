@@ -20,9 +20,13 @@ class MediumResoruce extends JsonResource
                 "title" => $this->title,
                 "score" => $this->score,
                 "comment" => $this->comment,
-                "classification" => [
-                    "category" => $this->category->category,
-                    "type" => $this->category->subtype->subtype
+                'category' => [
+                    'id' => $this->category->id,
+                    'category' => $this->category->category
+                ],
+                'type' => [
+                    'id' => $this->category->subtype->id,
+                    'type' => $this->category->subtype->subtype
                 ],
                 "status" => $this->status->status,
                 "user_id" => $this->user_id,
