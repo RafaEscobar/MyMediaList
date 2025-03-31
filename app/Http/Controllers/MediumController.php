@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Store\MediaImageRequest;
 use App\Http\Requests\Store\MediumStoreRequest;
 use App\Http\Requests\Update\MediumUpdateRequest;
 use App\Http\Resources\Collections\MediumCollection;
 use App\Http\Resources\Resources\MediumResoruce;
-use App\Http\Resources\Resources\SagaResource;
 use App\Models\Medium;
-use App\Models\Saga;
-use App\Models\Subtype;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -69,24 +65,6 @@ class MediumController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
-        }
-    }
-
-    public function addImage(MediaImageRequest $request, $id)
-    {
-        try {
-            $type = Subtype::findOrFail($request->type);
-            if ($type->subtype == 'Media') {
-                $entity = Medium::findOrFail($id);
-                $entity->addMediaFromRequest('image')->toMediaCollection('medias');
-                return new MediumResoruce($entity);
-            } else if ($type->subtype == 'Saga') {
-                $entity = Saga::findOrFail($id);
-                $entity->addMediaFromRequest('image')->toMediaCollection('sagas');
-                return new SagaResource($entity);
-            }
-        } catch (\Throwable $th) {
-            return response()->json(["message" => $th->getMessage(), 500]);
         }
     }
 }
