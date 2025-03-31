@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MediumController;
 use App\Http\Controllers\PendingPriorityController;
 use App\Http\Controllers\PostViewPriorityController;
@@ -29,4 +30,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/favorites', FavoriteController::class);
     Route::apiResource('/ranking', RankingController::class)->only(['index', 'show']);
     Route::post('/add-image/{id}', [MediumController::class, 'addImage']);
+    ROute::post('add-images/{id}', [ImageController::class, 'addImages']);
 });
