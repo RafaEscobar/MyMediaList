@@ -6,12 +6,17 @@ use App\Http\Requests\Store\ContentStoreRequest;
 use App\Http\Requests\Update\ContentUpdateRequest;
 use App\Models\Content;
 use Illuminate\Routing\Controller;
+use Request;
 
 class ContentController extends Controller
 {
     public function index()
     {
-
+        try {
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()]);
+        }
     }
 
     public function show(Content $content)

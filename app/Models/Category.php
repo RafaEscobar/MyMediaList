@@ -10,18 +10,11 @@ class Category extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    public function medias()
+    protected $fillable = ['category'];
+
+    public function Contents()
     {
-        return $this->hasMany(Medium::class);
+        return $this->hasMany(Content::class);
     }
 
-    public function sagas()
-    {
-        return $this->hasMany(Saga::class);
-    }
-
-    public function subtype()
-    {
-        return $this->belongsTo(Subtype::class);
-    }
 }

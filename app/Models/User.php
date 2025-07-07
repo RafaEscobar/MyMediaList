@@ -48,23 +48,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function favoriteSaga()
+    public function contents()
     {
-        return $this->morphedByMany(Saga::class, 'favoritable', 'favorites', 'user_id', 'favoritable_id');
+        return $this->hasMany(Content::class);
     }
 
-    public function favoriteMedia()
-    {
-        return $this->morphedByMany(Medium::class, 'favoritable', 'favorites', 'user_id', 'favoritable_id');
-    }
-
-    public function sagas()
-    {
-        return $this->hasMany(Saga::class);
-    }
-
-    public function entertainment()
-    {
-        return $this->hasMany(Medium::class);
-    }
 }
