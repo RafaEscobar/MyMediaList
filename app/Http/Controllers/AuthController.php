@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Get\AuthRequest;
+use App\Http\Requests\Store\RegisterRequest;
 use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Routing\Controller;
@@ -26,7 +27,7 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = User::create($request->all());
