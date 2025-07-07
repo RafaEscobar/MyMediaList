@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Store\ContentStoreRequest;
 use App\Http\Requests\Update\ContentUpdateRequest;
+use App\Http\Resources\Collections\ContentCollection;
 use App\Models\Content;
 use Auth;
 use Illuminate\Routing\Controller;
@@ -18,7 +19,7 @@ class ContentController extends Controller
                 ->when($request->has('category_id'), function($q) use ($request) {
                     $q->where('category_id', $request->input('category_id'));
                 })->paginate($request->input('limit'));
-            
+            return new ContentCollection($contents);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()]);
         }
