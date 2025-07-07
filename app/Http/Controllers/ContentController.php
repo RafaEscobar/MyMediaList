@@ -14,11 +14,11 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         try {
-            dd($request);
             $contents = Auth::user()->contents()
                 ->when($request->has('category_id'), function($q) use ($request) {
                     $q->where('category_id', $request->input('category_id'));
                 })->paginate($request->input('limit'));
+            
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()]);
         }
