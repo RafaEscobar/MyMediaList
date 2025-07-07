@@ -8,7 +8,6 @@ use App\Http\Resources\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Request;
 
 class AuthController extends Controller
 {
