@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('comment');
             $table->tinyInteger('status');
             $table->boolean('isFavorite');
-            $table->foreingIdFor(Category::class)
+            $table->foreignIdFor(Category::class)
                 ->constrained('categories')
                 ->onDelete('cascade');
             $table->foreignIdFor(User::class)

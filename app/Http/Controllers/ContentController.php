@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Store\ContentStoreRequest;
 use App\Http\Requests\Update\ContentUpdateRequest;
 use App\Models\Content;
+use Auth;
 use Illuminate\Routing\Controller;
-use Request;
+use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            
+            dd($request);
+            $contents = Auth::user()->contents()
+                ->when($request->has('category_id'), function($q) use ($request) {
+                    $q->where('category_id', $request->input('category_id'));
+                })->paginate($request->input('limit'));
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()]);
         }
