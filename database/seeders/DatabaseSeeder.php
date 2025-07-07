@@ -14,11 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            SubtypeSeed::class,
-            PendingPrioritySeed::class,
-            PostViewPrioritySeed::class,
             CategorySeed::class,
-            StatusSeed::class
         ]);
     }
 }
