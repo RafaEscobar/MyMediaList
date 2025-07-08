@@ -23,7 +23,9 @@ class ContentResource extends JsonResource
                 'status' => $this->status,
                 'isFavorite' => $this->isFavorite,
                 'category_id' => $this->category_id,
-                'user_id' => $this->user_id
+                'user_id' => $this->user_id,
+                'images' => $this->getMedia('medias')->map(fn($media) => $media->getUrl()),
+                'created_at' => $this->created_at
             ];
         } catch (\Throwable $th) {
             throw "Category resource error: " . $th->getMessage();
