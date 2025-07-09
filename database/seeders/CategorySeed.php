@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategorySeed extends Seeder
@@ -13,26 +12,11 @@ class CategorySeed extends Seeder
      */
     public function run(): void
     {
-        $movie = Category::create([
-            'category' => 'Película',
-            'subtype_id' => 1
-        ]);
-        $serie = Category::create([
-            'category' => 'Serie',
-            'subtype_id' => 2
-        ]);
-        $manga = Category::create([
-            'category' => 'Manga',
-            'subtype_id' => 2
-        ]);
-        $game = Category::create([
-            'category' => 'Videojuego',
-            'subtype_id' => 1
-        ]);
-        $anime = Category::create([
-            'category' => 'Anime',
-            'subtype_id' => 2
-        ]);
+        $movie = Category::create(['category' => 'Película',]);
+        $serie = Category::create(['category' => 'Serie',]);
+        $manga = Category::create(['category' => 'Manga',]);
+        $game = Category::create(['category' => 'Videojuego',]);
+        $anime = Category::create(['category' => 'Anime',]);
 
         $movieImageUrl = storage_path('app/public/images/movie.svg');
         $serieImageUrl = storage_path('app/public/images/serie.svg');

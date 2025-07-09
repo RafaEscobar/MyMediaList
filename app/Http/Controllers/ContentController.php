@@ -21,13 +21,17 @@ class ContentController extends Controller
                 })->paginate($request->input('limit'));
             return new ContentCollection($contents);
         } catch (\Throwable $th) {
-            return response()->json(['message' => $th->getMessage()]);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 
     public function show(Content $content)
     {
-
+        try {
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function store(ContentStoreRequest $request)

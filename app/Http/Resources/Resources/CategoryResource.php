@@ -19,7 +19,6 @@ class CategoryResource extends JsonResource
                 "id" => $this->id,
                 "category" => $this->category,
                 "image" => $this->getMedia('categories')->first()->getUrl(),
-                "subtype" => $this->subtype->subtype
             ];
         } catch (\Throwable $th) {
             throw "Category resource";
