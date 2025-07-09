@@ -30,4 +30,18 @@ class ContentCollection extends ResourceCollection
         ]);
     }
 
+    public static function success($data = null, string $message, int $code = 200)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => $message ?? 'An error ocurred',
+            'data' => $data,
+            'errors' => null,
+            'meta' => [
+                'timestamp' => now()->toISOString(),
+                ''
+            ]
+        ]);
+    }
+
 }
