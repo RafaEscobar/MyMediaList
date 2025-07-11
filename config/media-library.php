@@ -1,5 +1,7 @@
 <?php
 
+use App\MediaLibrary\PathGenerators\MediaLibraryPathGenerator;
+
 return [
 
     /*
@@ -76,7 +78,7 @@ return [
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    'path_generator' => MediaLibraryPathGenerator::class,
 
     /*
      * The class that contains the strategy for determining how to remove files.
@@ -90,6 +92,8 @@ return [
         // Model::class => PathGenerator::class
         // or
         // 'model_morph_alias' => PathGenerator::class
+        'path_generator' => App\Support\MediaLibraryPathGenerator::class,
+
     ],
 
     /*
