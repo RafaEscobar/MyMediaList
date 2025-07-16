@@ -15,5 +15,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('/categories', CategoryController::class)->only(['index']);
     Route::apiResource('/contents', ContentController::class);
-    Route::apiResource('/chapters', ChapterController::class)->only(['store', 'update', 'destroy']);
+    Route::apiResource('/chapters', ChapterController::class)->only(['index', 'store', 'update', 'destroy']);
 });
