@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('score');
+            $table->double('score')->default('0.0');
             $table->text('comment');
-            $table->tinyInteger('status');
-            $table->boolean('isFavorite');
+            $table->tinyInteger('status')->default(0);
+            $table->boolean('isFavorite')->default(false);
             $table->foreignIdFor(Category::class)
                 ->constrained('categories')
                 ->onDelete('cascade');

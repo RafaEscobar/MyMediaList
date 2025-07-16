@@ -28,7 +28,8 @@ class ContentStoreRequest extends FormRequest
             'score' => 'numeric',
             'comment' => 'string',
             'category_id' => 'required|integer|exists:categories,id',
-            'user_id' => 'required|integer|exists:users,id'
+            'user_id' => 'required|integer|exists:users,id',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10048'
         ];
     }
 
@@ -48,6 +49,8 @@ class ContentStoreRequest extends FormRequest
             'user_id.required' => 'El usuario asociado es obligatorio.',
             'user_id.integer' => 'El formato del identificador del usuario es incorrecto.',
             'user_id.exists' => 'Error de asociación con el usuario.',
+            'image.required' => 'La imagen es obligatoría',
+            'image.image' => 'Formato de imagen incorrecto'
         ];
     }
 }

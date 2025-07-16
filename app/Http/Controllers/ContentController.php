@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Store\ContentStoreRequest;
 use App\Http\Requests\Update\ContentUpdateRequest;
 use App\Http\Resources\Collections\ContentCollection;
+use App\Http\Resources\Resources\ContentResource;
 use App\Models\Content;
 use Auth;
 use Illuminate\Routing\Controller;
@@ -37,8 +38,11 @@ class ContentController extends Controller
     public function store(ContentStoreRequest $request)
     {
         try {
-            
+            $content = Content::create($request->validated());
+            $content->addMediaFromRequest('image')->toMediaCollection('contents');
+            return new ContentResource($content);
         } catch (\Throwable $th) {
+            dd($th);
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }

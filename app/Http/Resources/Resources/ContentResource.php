@@ -24,7 +24,7 @@ class ContentResource extends JsonResource
                 'isFavorite' => $this->isFavorite,
                 'category_id' => $this->category_id,
                 'user_id' => $this->user_id,
-                'images' => $this->getMedia('medias')->map(fn($media) => $media->getUrl()),
+                'images' => $this->getMedia('contents')->map(fn($media) => $media->getUrl()),
                 'created_at' => $this->created_at
             ];
         } catch (\Throwable $th) {
