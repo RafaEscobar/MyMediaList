@@ -29,7 +29,7 @@ class ContentController extends Controller
     public function show(Content $content)
     {
         try {
-
+            return new ContentResource($content);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
         }
@@ -42,7 +42,6 @@ class ContentController extends Controller
             $content->addMediaFromRequest('image')->toMediaCollection('contents');
             return new ContentResource($content);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json(['message' => $th->getMessage()], 500);
         }
     }
