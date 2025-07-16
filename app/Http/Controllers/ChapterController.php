@@ -33,6 +33,11 @@ class ChapterController extends Controller
 
     public function destroy(Chapter $chapter)
     {
-
+        try {
+            $chapter->delete();
+            return response()->json(['message' => "Capítulo eliminado"], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 }
