@@ -58,6 +58,11 @@ class ContentController extends Controller
 
     public function destroy(Content $content)
     {
-
+        try {
+            $content->delete();
+            return response()->json(['Contenido eliminado'], 200);
+        } catch (\Throwable $th) {
+            response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 }
