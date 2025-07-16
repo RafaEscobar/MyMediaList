@@ -48,7 +48,12 @@ class ContentController extends Controller
 
     public function update(ContentUpdateRequest $request, Content $content)
     {
-
+        try {
+            $content->update($request->validated());
+            return new ContentResource($content);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function destroy(Content $content)
