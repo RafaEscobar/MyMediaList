@@ -23,7 +23,12 @@ class ChapterController extends Controller
 
     public function update(ChapterUpdateRequest $request, Chapter $chapter)
     {
-
+        try {
+            $chapter->update($request->validated());
+            return new ChapterResource($chapter);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function destroy(Chapter $chapter)
