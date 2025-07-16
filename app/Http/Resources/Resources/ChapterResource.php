@@ -5,7 +5,7 @@ namespace App\Http\Resources\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ContentResource extends JsonResource
+class ChapterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,19 +16,18 @@ class ContentResource extends JsonResource
     {
         try {
             return [
-                "id" => $this->id,
+                'id' => $this->id,
                 'name' => $this->name,
                 'score' => $this->score,
                 'comment' => $this->comment,
-                'status' => $this->status,
-                'isFavorite' => $this->isFavorite,
-                'category_id' => $this->category_id,
-                'user_id' => $this->user_id,
-                'images' => $this->getMedia('contents')->map(fn($media) => $media->getUrl()),
-                'created_at' => $this->created_at
+                'content_id' => $this->comment_id,
+                'created_at' => $this->created_at,
+                'images' => $this->getMedia('chapters')->map(function($chapter){
+                    return $chapter->getUrl();
+                })
             ];
         } catch (\Throwable $th) {
-            throw "Content resource error: " . $th->getMessage();
+            throw "Error en ContentResource " . $th->getMessage();
         }
     }
 }
