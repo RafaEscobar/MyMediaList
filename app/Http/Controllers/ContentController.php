@@ -36,7 +36,11 @@ class ContentController extends Controller
 
     public function store(ContentStoreRequest $request)
     {
-
+        try {
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function update(ContentUpdateRequest $request, Content $content)
