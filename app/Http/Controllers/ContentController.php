@@ -19,6 +19,9 @@ class ContentController extends Controller
             $contents = Auth::user()->contents()
                 ->when($request->has('category_id'), function($q) use ($request) {
                     $q->where('category_id', $request->input('category_id'));
+                })
+                ->when($request->has('status'), function($q) use ($request) {
+                    $q->where('status', $request->input('status'));
                 })->paginate($request->input('limit'));
             return new ContentCollection($contents);
         } catch (\Throwable $th) {

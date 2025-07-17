@@ -26,6 +26,7 @@ class ContentResource extends JsonResource
                 'user_id' => $this->user_id,
                 'cover' => $this->getFirstMediaUrl('cover'),
                 'images' => $this->getMedia('contents')->map(fn($media) => $media->getUrl()),
+                "chapters" => $this->chapters,
                 'created_at' => $this->created_at
             ];
         } catch (\Throwable $th) {
