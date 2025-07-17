@@ -32,6 +32,7 @@ class ContentController extends Controller
     public function show(Content $content)
     {
         try {
+            $content->load('chapters');
             return new ContentResource($content);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
