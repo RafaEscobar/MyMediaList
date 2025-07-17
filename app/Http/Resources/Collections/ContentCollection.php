@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Collections;
 
-use App\Http\Resources\Resources\ContentResource;
+use App\Http\Resources\Resources\ContentSummaryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -17,7 +17,7 @@ class ContentCollection extends ResourceCollection
     {
         /** @var AbstractPaginator $this->resource */
         return response()->json([
-            'data' => ContentResource::collection($this->collection),
+            'data' => ContentSummaryResource::collection($this->collection),
             'meta' => [
                 'total' => $this->collection->count(),
                 'links' => [
