@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/contents', ContentController::class);
     Route::apiResource('/chapters', ChapterController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::apiResource('/rankings', RankingController::class)->only(['index']);
+    Route::post('/add-images/{content}', [ContentController::class, 'addImages']);
 });

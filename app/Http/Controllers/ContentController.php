@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Store\ContentStoreRequest;
+use App\Http\Requests\Store\ImageRequest;
 use App\Http\Requests\Update\ContentUpdateRequest;
 use App\Http\Resources\Collections\ContentCollection;
 use App\Http\Resources\Resources\ContentResource;
@@ -70,6 +71,18 @@ class ContentController extends Controller
             return response()->json(['Contenido eliminado'], 200);
         } catch (\Throwable $th) {
             response()->json(['message' => $th->getMessage()], 500);
+        }
+    }
+
+    public function addImages(ImageRequest $request, Content $content)
+    {
+        try {
+            foreach($request->file('images') as $image) {
+                $content->addMedia($image)->toMediaCollection('contents');
+            }
+            return response()->json(["message" => "Imagenes cargadas"], 200);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 500);
         }
     }
 }
