@@ -53,4 +53,9 @@ class User extends Authenticatable
         return $this->hasMany(Content::class);
     }
 
+    public function stats()
+    {
+        return $this->hasOne(UserStat::class);
+    }
+
 }
