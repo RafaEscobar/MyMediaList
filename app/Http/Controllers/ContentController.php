@@ -39,7 +39,7 @@ class ContentController extends Controller
     {
         try {
             $content = Content::create($request->validated());
-            $content->addMediaFromRequest('image')->toMediaCollection('contents');
+            $content->addMediaFromRequest('image')->toMediaCollection('cover');
             return new ContentResource($content);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
@@ -50,6 +50,7 @@ class ContentController extends Controller
     {
         try {
             $content->update($request->validated());
+            $content->addMediaFromRequest('image')->toMediaCollection('cover');
             return new ContentResource($content);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);

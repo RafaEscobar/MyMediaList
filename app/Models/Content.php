@@ -20,6 +20,12 @@ class Content extends Model implements HasMedia
         'user_id'
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('cover')->singleFile();
+        $this->addMediaCollection('contents');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
