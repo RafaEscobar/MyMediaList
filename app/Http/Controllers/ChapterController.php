@@ -14,7 +14,7 @@ class ChapterController extends Controller
     {
         try {
             $chapter = Chapter::create($request->validated());
-            $chapter->addMediaFromRequest('image')->toMediaCollection('chapters');
+            $chapter->addMediaFromRequest('image')->toMediaCollection('cover');
             return new ChapterResource($chapter);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);
@@ -25,6 +25,7 @@ class ChapterController extends Controller
     {
         try {
             $chapter->update($request->validated());
+            $chapter->addMediaFromRequest('image')->toMediaCollection('cover');
             return new ChapterResource($chapter);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);

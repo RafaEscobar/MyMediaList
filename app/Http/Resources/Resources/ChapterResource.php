@@ -22,6 +22,7 @@ class ChapterResource extends JsonResource
                 'comment' => $this->comment,
                 'content_id' => $this->comment_id,
                 'created_at' => $this->created_at,
+                'cover' => $this->getFirstMediaUrl('cover'),
                 'images' => $this->getMedia('chapters')->map(function($chapter){
                     return $chapter->getUrl();
                 })

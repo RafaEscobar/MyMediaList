@@ -17,6 +17,12 @@ class Chapter extends Model implements HasMedia
         'content_id',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('cover')->singleFile();
+        $this->addMediaCollection('chapters');
+    }
+
     public function content()
     {
         return $this->belongsTo(Content::class);
