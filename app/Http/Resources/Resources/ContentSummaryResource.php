@@ -23,6 +23,7 @@ class ContentSummaryResource extends JsonResource
                 'cover' => $this->getFirstMediaUrl('cover'),
             ];
         } catch (\Throwable $th) {
+            dd("aqui");
             throw "Error interno: content-summary";
         }
     }

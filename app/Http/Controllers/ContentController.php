@@ -54,7 +54,9 @@ class ContentController extends Controller
     {
         try {
             $content->update($request->validated());
-            $content->addMediaFromRequest('image')->toMediaCollection('cover');
+            if ($request->has('image')) {
+                $content->addMediaFromRequest('image')->toMediaCollection('cover');
+            }
             return new ContentResource($content);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 500);

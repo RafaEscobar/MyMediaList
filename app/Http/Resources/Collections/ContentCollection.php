@@ -8,15 +8,22 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ContentCollection extends ResourceCollection
 {
+    protected $withMeta;
+
+    public function __construct($resource, bool $withMeta = true)
+    {
+        parent::__construct($resource);
+        $this->withMeta = $withMeta;
+    }
+
     /**
      * Transform the resource collection into an array.
      *
      * @return array<int|string, mixed>
      */
-    public function toResponse($request): JsonResponse
+    public function toResponse($request, $withMeta = true): JsonResponse
     {
-        /** @var AbstractPaginator $this->resource */
-        return response()->json([
+        $response = ($this->withMeta) ? [
             'data' => ContentSummaryResource::collection($this->collection),
             'meta' => [
                 'total' => $this->collection->count(),
@@ -27,7 +34,9 @@ class ContentCollection extends ResourceCollection
                     'next' => $this->nextPageUrl(),
                 ],
             ]
-        ]);
+        ] : ['data' => ContentSummaryResource::collection($this->collection)];
+        /** @var AbstractPaginator $this->resource */
+        return response()->json($response);
     }
 
     public static function success($data = null, string $message, int $code = 200)

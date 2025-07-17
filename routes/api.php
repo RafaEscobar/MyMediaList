@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\RankingController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function(){
@@ -16,4 +17,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/categories', CategoryController::class)->only(['index']);
     Route::apiResource('/contents', ContentController::class);
     Route::apiResource('/chapters', ChapterController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::apiResource('/rankings', RankingController::class)->only(['index']);
 });
