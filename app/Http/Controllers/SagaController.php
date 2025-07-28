@@ -18,7 +18,9 @@ class SagaController extends Controller
             $sagas = Auth::user()->sagas()
             ->when($request->has('category_id'), function($q) use ($request) {
                 $q->where('category_id', $request->category_id);
-            })->paginate($request->limit);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($request->limit);
             return new SagaCollection($sagas);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
