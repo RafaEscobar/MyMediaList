@@ -41,7 +41,14 @@ class ChapterController extends Controller
 
     public function update(ChapterUpdateRequest $request, $id)
     {
-
+        try {
+            $chapter = Chapter::find($id);
+            $chapter->update($request->validated());
+            $this->updateSagaScore($request['saga_id']);
+            return new ChapterResource($chapter);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 500);
+        }
     }
 
     public function show($id)

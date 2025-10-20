@@ -19,21 +19,21 @@ class ChapterUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         $method = $this->method();
         if ($method == 'PUT') {
             return [
                 "name" => "required|string|max:42|min:3",
-                "score" => "required|double",
-                "comment" => "text|nullable",
+                "score" => "required",
+                "comment" => "nullable",
                 "saga_id" => "required|integer|exists:sagas,id"
             ];
         } else if ($method == 'PATCH') {
             return [
                 "name" => "sometimes|required|string|max:42|min:3",
-                "score" => "sometimes|required|double",
-                "comment" => "sometimes|text|nullable",
+                "score" => "sometimes|required",
+                "comment" => "sometimes|nullable",
                 "saga_id" => "sometimes|required|integer|exists:sagas,id"
             ];
         }
