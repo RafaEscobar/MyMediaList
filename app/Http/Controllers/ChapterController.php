@@ -58,7 +58,10 @@ class ChapterController extends Controller
 
     public function destroy($id)
     {
-
+        $chapter = Chapter::find($id);
+        $sagaId = $chapter->saga_id;
+        $chapter->delete();
+        $this->updateSagaScore($sagaId);
     }
 
     private function updateSagaScore(int $sagaId): void
