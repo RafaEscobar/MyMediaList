@@ -24,14 +24,14 @@ class ChapterUpdateRequest extends FormRequest
         $method = $this->method();
         if ($method == 'PUT') {
             return [
-                "name" => "required|string|max:42|min:3",
+                "name" => "required|string|max:64",
                 "score" => "required",
                 "comment" => "nullable",
                 "saga_id" => "required|integer|exists:sagas,id"
             ];
         } else if ($method == 'PATCH') {
             return [
-                "name" => "sometimes|required|string|max:42|min:3",
+                "name" => "sometimes|required|string|max:64",
                 "score" => "sometimes|required",
                 "comment" => "sometimes|nullable",
                 "saga_id" => "sometimes|required|integer|exists:sagas,id"
