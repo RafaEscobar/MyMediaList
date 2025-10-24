@@ -41,7 +41,9 @@ class MediumController extends Controller
     public function update(MediumUpdateRequest $request, $id)
     {
         try {
-
+            $media = Medium::findOrFail($id);
+            $media->update($request->validated());
+            return new MediumResoruce($media);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
@@ -64,7 +66,9 @@ class MediumController extends Controller
     public function destroy($id)
     {
         try {
-
+            $media = Medium::findOrFail($id);
+            $media->delete();
+            return response()->noContent();
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
