@@ -19,13 +19,13 @@ class MediumUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         $method = $this->method();
         if ($method == 'PUT') {
             return [
                 'title' => 'required|string|max:32|min:3',
-                'score' => 'double|nullable',
+                'score' => 'nullable',
                 'comment' => 'text|nullable',
                 'category_id' => 'required|integer|exists:categories,id',
                 'status_id' => 'required|integer|exists:statuses,id',
@@ -35,7 +35,7 @@ class MediumUpdateRequest extends FormRequest
         } else if ($method == 'PATCH') {
             return [
                 'title' => 'sometimes|required|string|max:32|min:3',
-                'score' => 'sometimes|double|nullable',
+                'score' => 'sometimes|nullable',
                 'comment' => 'sometimes|text|nullable',
                 'category_id' => 'sometimes|required|integer|exists:categories,id',
                 'status_id' => 'sometimes|required|integer|exists:statuses,id',
