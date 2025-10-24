@@ -59,7 +59,13 @@ class SagaController extends Controller
 
     public function destroy($id)
     {
-
+        try {
+            $saga = Saga::findOrFail($id);
+            $saga->delete();
+            return response()->noContent();
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     private function getDataSaga(Saga $saga):SagaResource
